@@ -1,0 +1,10 @@
+{   "1": "COMPUTER",
+    "2": "CALCULATOR",
+    "3": "MOUSE",
+    "4": "KEYBOARD",
+    "5": "MODEM",
+    "6": "INTERNET",
+    "7": "MONITOR",
+    "8": "PRINTER",
+    "9": "SPEAKER",
+    "10": "HEADSET"}
