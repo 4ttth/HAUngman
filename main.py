@@ -108,7 +108,7 @@ def hangman6():  # wanswer6
     print("|      ^  ")
     print("*========|")
     print("Mr. HAUngman died, player 1 wins!")
-    a = str(input("Would you like to try again?"))
+    a = str(input("Would you like to try again? "))
     if 'y' or 'Y' in a:
         clear()
         intro()
@@ -317,7 +317,7 @@ def startsing():
     for x in cAnswer:
         print("_", end=" ")
     print("")
-    if dictselInput == 2: print(cDesc)
+    if dictselInput == 2: print(f'\nHint: {cDesc}')
     print("-" * 26)
     while wrongCount1 != 6 and rightGuess1 != cLength:
         print("\nLetters used: ")
@@ -341,12 +341,16 @@ def startsing():
                 print("-" * 26)
                 wrongCount1 += 1
                 wrongman(wrongCount1)
+                rightGuess1 = singleGuessWord1(guessPool1)
+                singleGuessWord2()
+                if dictselInput == 2: print(f'\nHint: {cDesc}')
         elif len(guess) == 1 and guess.isalpha():
             if guess in guessPool1:
                 clear()
                 print(f"You already guessed the letter: {guess}.")
                 wrongman(wrongCount1)
                 singleGuessWord2()
+                if dictselInput == 2: print(f'\nHint: {cDesc}')
 
             elif guess not in cAnswer:
                 clear()
@@ -356,6 +360,7 @@ def startsing():
                 wrongman(wrongCount1)
                 rightGuess1 = singleGuessWord1(guessPool1)
                 singleGuessWord2()
+                if dictselInput == 2: print(f'\nHint: {cDesc}')
 
             else:
                 clear()
@@ -365,6 +370,27 @@ def startsing():
                 guessPool1.append(guess)
                 rightGuess1 = singleGuessWord1(guessPool1)
                 singleGuessWord2()
+                if dictselInput == 2: print(f'\nHint: {cDesc}')
+
+        elif len(guess) >= 2:
+            clear()
+            print("-" * 26)
+            wrongCount1 += 1
+            wrongman(wrongCount1)
+            rightGuess1 = singleGuessWord1(guessPool1)
+            singleGuessWord2()
+            print("\nWrong guess!")
+            if dictselInput == 2: print(f'\nHint: {cDesc}')
+
+        elif len(guess) >= cLength:
+            clear()
+            print("-" * 2)
+            wrongCount1 += 1
+            wrongman(wrongCount1)
+            rightGuess1 = singleGuessWord1(guessPool1)
+            singleGuessWord2()
+            print(f"Your guess has {len(guess)} letters, the correct answer only has {cLength} answers.")
+            if dictselInput == 2: print(f'\nHint: {cDesc}')
     else:
         clear()
         print("-" * 26)
@@ -494,11 +520,14 @@ def startmultiguess():
                 guesser += 1
                 wrongCount += 1
                 wrongman(wrongCount)
+                rightGuess = multiGuessWord1(guessPool)
+                multiGuessWord2()
         elif len(pguess) == 1 and pguess.isalpha():
             if pguess in guessPool:
                 clear()
                 print(f"You already guessed the letter: {pguess}.")
                 wrongman(wrongCount)
+                rightGuess = multiGuessWord1(guessPool)
                 multiGuessWord2()
 
             elif pguess not in multiAnswer:
@@ -520,6 +549,26 @@ def startmultiguess():
                 guessPool.append(pguess)
                 rightGuess = multiGuessWord1(guessPool)
                 multiGuessWord2()
+
+        elif len(pguess) >= 2:
+            clear()
+            print("-" * 26)
+            guesser += 1
+            wrongCount += 1
+            wrongman(wrongCount)
+            rightGuess = multiGuessWord1(guessPool)
+            singleGuessWord2()
+            print("\nWrong guess!")
+
+        elif len(pguess) >= malength:
+            clear()
+            print("-" * 2)
+            guesser += 1
+            wrongCount += 1
+            wrongman(wrongCount)
+            rightGuess = multiGuessWord1(guessPool)
+            multiGuessWord2()
+            print(f"Your guess has {len(pguess)} letters, the correct answer only has {malength} answers.")
     else:
         clear()
         print("-" * 26)
